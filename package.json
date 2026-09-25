@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
-    "homepage": "https://github.io"
+    "homepage": "https://adagioceremonie.github.io"
 
   },
   "dependencies": {
