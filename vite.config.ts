@@ -2,10 +2,19 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig} from 'vite';
+// Source - https://stackoverflow.com/a/76929134
+// Posted by rozsazoltan
+// Retrieved 2026-09-25, License - CC BY-SA 4.0
+
+// vite.config.js
 
 export default defineConfig({
-  base: '/adagioceremonie/',
+  build: {
+    base: './',
+    // Other build configuration options...
+  },
 })
+
   return {
     plugins: [react(), tailwindcss()],
     resolve: {
