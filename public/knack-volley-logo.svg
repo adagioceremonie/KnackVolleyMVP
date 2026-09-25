@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="100%" height="100%">
+  <defs>
+    <!-- Top Text Path: Arched along top of blue outer ring -->
+    <path id="topTextArc" d="M 35,92 A 93,93 0 0,1 205,92" fill="none" />
+    
+    <!-- Bottom Text Path: Arched along bottom of blue outer ring (upright) -->
+    <path id="bottomTextArc" d="M 37,148 A 93,93 0 0,0 203,148" fill="none" />
+
+    <!-- Clip Path for the inner volleyball circle -->
+    <clipPath id="innerVolleyballClip">
+      <circle cx="120" cy="120" r="76" />
+    </clipPath>
+  </defs>
+
+  <!-- Outer Fine Border -->
+  <circle cx="120" cy="120" r="118" fill="none" stroke="#0C447E" stroke-width="1.5" />
+
+  <!-- Main Royal Blue Outer Ring -->
+  <circle cx="120" cy="120" r="116" fill="#185DA6" stroke="#0F4C8A" stroke-width="2" />
+
+  <!-- Inner Concentric Ring Line -->
+  <circle cx="120" cy="120" r="77" fill="none" stroke="#0F4C8A" stroke-width="2" />
+
+  <!-- Inner Circle White Base -->
+  <circle cx="120" cy="120" r="76" fill="#FFFFFF" />
+
+  <!-- Inner Volleyball Swirl Graphics (Masked to Inner Circle) -->
+  <g clip-path="url(#innerVolleyballClip)">
+    <!-- White background base -->
+    <rect x="40" y="40" width="160" height="160" fill="#FFFFFF" />
+
+    <!-- Top-Left Blue Volleyball Panel Swirl -->
+    <path d="M 72,48 C 88,58 92,85 86,105 L 60,105 C 56,92 56,72 72,48 Z" fill="#185DA6" />
+
+    <!-- Top Swirl Arc -->
+    <path d="M 98,45 C 112,48 135,62 138,98 L 115,98 C 112,78 98,64 80,52 Z" fill="#185DA6" />
+
+    <!-- Top-Right Blue Swirl -->
+    <path d="M 152,54 C 172,70 182,90 188,105 L 160,105 C 154,92 142,75 128,64 Z" fill="#185DA6" />
+
+    <!-- Bottom-Left Blue Swirl -->
+    <path d="M 52,135 L 78,135 C 84,152 98,172 118,185 C 98,188 74,175 62,155 Z" fill="#185DA6" />
+
+    <!-- Bottom Center-Left Swirl -->
+    <path d="M 88,138 L 114,138 C 118,158 112,178 95,194 C 84,182 82,160 88,138 Z" fill="#185DA6" />
+
+    <!-- Bottom-Right Blue Swirl -->
+    <path d="M 124,138 L 150,138 C 158,155 160,172 150,188 C 136,176 128,158 124,138 Z" fill="#185DA6" />
+
+    <!-- Volleyball Curvature Seam Lines -->
+    <path d="M 60,70 C 85,92 105,108 120,120" stroke="#0F4C8A" stroke-width="1.5" fill="none" opacity="0.4" />
+    <path d="M 180,70 C 155,92 135,108 120,120" stroke="#0F4C8A" stroke-width="1.5" fill="none" opacity="0.4" />
+    <path d="M 70,170 C 95,148 115,132 120,120" stroke="#0F4C8A" stroke-width="1.5" fill="none" opacity="0.4" />
+    <path d="M 170,170 C 145,148 125,132 120,120" stroke="#0F4C8A" stroke-width="1.5" fill="none" opacity="0.4" />
+
+    <!-- Horizontal White Banner for "knack" Sponsor -->
+    <rect x="40" y="96" width="160" height="48" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+
+    <!-- Official "knack" Wordmark in Solid Black -->
+    <text 
+      x="120" 
+      y="132" 
+      text-anchor="middle" 
+      font-family="system-ui, -apple-system, 'Plus Jakarta Sans', 'Outfit', sans-serif" 
+      font-weight="900" 
+      font-size="34" 
+      letter-spacing="-1.2" 
+      fill="#000000"
+    >knack</text>
+  </g>
+
+  <!-- Ring Text: "ONE TEAM ONE FAMILY" (Arched Top) -->
+  <text 
+    font-family="system-ui, -apple-system, 'Outfit', 'Plus Jakarta Sans', sans-serif" 
+    font-weight="800" 
+    font-size="12" 
+    letter-spacing="1.4" 
+    fill="#FFFFFF"
+  >
+    <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">
+      ONE TEAM ONE FAMILY
+    </textPath>
+  </text>
+
+  <!-- Left Number: "19" -->
+  <text 
+    x="25" 
+    y="125" 
+    text-anchor="middle" 
+    font-family="system-ui, -apple-system, 'Outfit', 'Plus Jakarta Sans', sans-serif" 
+    font-weight="800" 
+    font-size="14" 
+    fill="#FFFFFF"
+  >19</text>
+
+  <!-- Right Number: "64" -->
+  <text 
+    x="215" 
+    y="125" 
+    text-anchor="middle" 
+    font-family="system-ui, -apple-system, 'Outfit', 'Plus Jakarta Sans', sans-serif" 
+    font-weight="800" 
+    font-size="14" 
+    fill="#FFFFFF"
+  >64</text>
+
+  <!-- Ring Text: "Volley Roeselare" (Arched Bottom, Right-Side Up) -->
+  <text 
+    font-family="system-ui, -apple-system, 'Outfit', 'Plus Jakarta Sans', sans-serif" 
+    font-weight="800" 
+    font-size="15" 
+    letter-spacing="0.8" 
+    fill="#FFFFFF"
+  >
+    <textPath href="#bottomTextArc" startOffset="50%" text-anchor="middle">
+      Volley Roeselare
+    </textPath>
+  </text>
+</svg>

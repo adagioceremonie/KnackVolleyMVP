@@ -1,0 +1,8 @@
+{
+  "name": "Stem voor de Knack Volley MVP van de wedstrijd",
+  "description": "Officiële supportersverkiezing voor Knack Volley Roeselare. Breng jouw anonieme 3-2-1 stem uit voor de speler van de wedstrijd in REO Arena.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

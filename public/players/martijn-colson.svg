@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="750" viewBox="0 0 600 750">
+  <defs>
+    <linearGradient id="bgGrad_18" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#001F48"/>
+      <stop offset="30%" stop-color="#003B7A"/>
+      <stop offset="70%" stop-color="#0252A6"/>
+      <stop offset="100%" stop-color="#001838"/>
+    </linearGradient>
+    <radialGradient id="glow_18" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#38BDF8" stop-opacity="0.4"/>
+      <stop offset="60%" stop-color="#003B7A" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.55"/>
+    </radialGradient>
+    <pattern id="gridPattern_18" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="40" stroke="#FFFFFF" stroke-width="3" opacity="0.04"/>
+    </pattern>
+    <filter id="dropShadow_18" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#00122B" flood-opacity="0.7"/>
+    </filter>
+  </defs>
+
+  <!-- Blue Knack Volley Background -->
+  <rect width="600" height="750" fill="url(#bgGrad_18)"/>
+  <rect width="600" height="750" fill="url(#gridPattern_18)"/>
+  <rect width="600" height="750" fill="url(#glow_18)"/>
+
+  <!-- Subtle Volleyball Seam / Energy Arcs -->
+  <circle cx="300" cy="350" r="210" fill="none" stroke="#38BDF8" stroke-width="4" opacity="0.22" stroke-dasharray="12 8"/>
+  <circle cx="300" cy="350" r="245" fill="none" stroke="#38BDF8" stroke-width="2" opacity="0.15"/>
+
+  <!-- Knack Volley Star Cluster Top -->
+  <g transform="translate(300, 115)" fill="#F59E0B" opacity="0.9">
+    <polygon points="0,-16 4,-4 16,-4 7,3 10,15 0,8 -10,15 -7,3 -16,-4 -4,-4" transform="scale(1.2)"/>
+  </g>
+  <text x="300" y="165" fill="#93C5FD" font-family="Arial, sans-serif" font-size="17" font-weight="800" text-anchor="middle" letter-spacing="5">KNACK VOLLEY ROESELARE</text>
+
+  
+
+  <!-- Large Crisp White Number in Center -->
+  <g transform="translate(300, 395)" filter="url(#dropShadow_18)">
+    <text x="0" y="0" fill="#FFFFFF" font-family="Impact, Arial Black, sans-serif" font-size="230" font-weight="900" text-anchor="middle" letter-spacing="-4">18</text>
+  </g>
+
+  <!-- Player Info Card at Bottom -->
+  <g transform="translate(0, 580)">
+    <rect x="45" y="0" width="510" height="112" rx="24" fill="#011530" opacity="0.88" stroke="#0284C7" stroke-width="2"/>
+    <text x="300" y="46" fill="#FFFFFF" font-family="Arial, sans-serif" font-size="26" font-weight="900" text-anchor="middle" letter-spacing="1">MARTIJN COLSON</text>
+    <text x="300" y="78" fill="#38BDF8" font-family="Arial, sans-serif" font-size="16" font-weight="800" text-anchor="middle" letter-spacing="3">MIDDENBLOKKER &bull; #18</text>
+  </g>
+</svg>
