@@ -7,13 +7,22 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
+
+// Google Cloud Run automatically passes PORT=8080.
+// In local/dev environments without PORT, default to 3000.
+const isProduction = process.env.NODE_ENV === 'production';
+const PORT = parseInt(process.env.PORT || (isProduction ? '8080' : '3000'), 10);
 
 app.use(express.json());
-app.use(express.static(path.join(process.cwd(), 'public')));
+
+// Public static assets
+const publicPath = path.join(process.cwd(), 'public');
+if (fs.existsSync(publicPath)) {
+  app.use(express.static(publicPath));
+}
 
 // Persistent storage for page views per match
-const DATA_DIR = path.join(process.cwd(), 'data');
+const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), 'data');
 const PAGEVIEWS_FILE = path.join(DATA_DIR, 'pageviews.json');
 
 function ensureDataDir() {
@@ -50,14 +59,17 @@ function savePageViews(data: Record<string, number>) {
 
 let pageViewsMap = loadPageViews();
 
-app.get('/api/health', (_req, res) => {
-  res.json({
+// Health check endpoints for Google Cloud Run (probes & load balancer health checks)
+app.get(['/healthz', '/livez', '/readyz', '/api/health'], (_req, res) => {
+  res.status(200).json({
     status: 'ok',
-    team: 'Knack Volley Roeselare',
-    season: '2026-2027',
+    team: 'Knack Volley Roeselare MVP Voting',
+    uptime: Math.round(process.uptime()),
+    timestamp: new Date().toISOString(),
   });
 });
 
+// API routes
 app.get('/api/pageviews/:matchId', (req, res) => {
   const { matchId } = req.params;
   const count = pageViewsMap[matchId] || 0;
@@ -79,7 +91,7 @@ app.post('/api/pageviews/:matchId/reset', (req, res) => {
 });
 
 async function startServer() {
-  if (process.env.NODE_ENV !== 'production') {
+  if (!isProduction) {
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: 'spa',
@@ -87,15 +99,40 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     const distPath = path.join(process.cwd(), 'dist');
-    app.use(express.static(distPath));
+    app.use(express.static(distPath, { index: false }));
     app.get('*', (_req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const indexPath = path.join(distPath, 'index.html');
+      if (fs.existsSync(indexPath)) {
+        res.setHeader('Cache-Control', 'no-cache');
+        res.sendFile(indexPath);
+      } else {
+        res.status(404).send('Application build not found. Run npm run build.');
+      }
     });
   }
 
-  app.listen(PORT, '0.0.0.0', () => {
-    console.log(`Knack Volley MVP Server running on http://0.0.0.0:${PORT}`);
+  // Bind to 0.0.0.0 - required by Google Cloud Run
+  const server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Knack Volley MVP Server running on http://0.0.0.0:${PORT} [${isProduction ? 'production' : 'development'}]`);
   });
+
+  // Graceful shutdown handling for Cloud Run container lifecycle (SIGTERM/SIGINT)
+  const shutdown = (signal: string) => {
+    console.log(`Received ${signal}. Shutting down HTTP server gracefully...`);
+    server.close(() => {
+      console.log('HTTP server terminated cleanly.');
+      process.exit(0);
+    });
+
+    // Force terminate after 10s if connections fail to close
+    setTimeout(() => {
+      console.error('Shutdown timeout expired, forcing process exit.');
+      process.exit(1);
+    }, 10000).unref();
+  };
+
+  process.on('SIGTERM', () => shutdown('SIGTERM'));
+  process.on('SIGINT', () => shutdown('SIGINT'));
 }
 
 startServer();

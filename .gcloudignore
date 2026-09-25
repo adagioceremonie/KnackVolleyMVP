@@ -1,8 +1,8 @@
-node_modules
-dist
-data
 .git
-.github
+.gitignore
+node_modules/
+dist/
+data/
 .env
 .env.local
 npm-debug.log*
